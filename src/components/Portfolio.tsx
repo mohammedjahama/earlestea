@@ -150,30 +150,19 @@ export default function Portfolio() {
               onClick={() => setDialogOpen(true)}
             >
               <div className="relative w-full h-full">
-                {projects[currentIndex].type === "image" ? (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={projects[currentIndex].localImage || ''}
-                      alt={projects[currentIndex].title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  </div>
-                ) : (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={projects[currentIndex].localImage || ''}
-                      alt={projects[currentIndex].title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  </div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={projects[currentIndex].localImage || ''}
+                    alt={projects[currentIndex].title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 z-10">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={cn(
                       "px-2 py-1 text-xs rounded",
@@ -187,8 +176,8 @@ export default function Portfolio() {
                       {projects[currentIndex].category}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl mb-2">{projects[currentIndex].title}</h3>
-                  <p className="text-gray-300">{projects[currentIndex].description}</p>
+                  <h3 className="text-xl md:text-3xl mb-2">{projects[currentIndex].title}</h3>
+                  <p className="text-sm md:text-base text-gray-300">{projects[currentIndex].description}</p>
                 </div>
               </div>
             </motion.div>
@@ -196,24 +185,24 @@ export default function Portfolio() {
 
           {/* Navigation Arrows */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors"
+            className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors"
             onClick={(e) => {
               e.stopPropagation()
               paginate(-1)
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 md:w-8 md:h-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors"
+            className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors"
             onClick={(e) => {
               e.stopPropagation()
               paginate(1)
             }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 md:w-8 md:h-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
           </button>

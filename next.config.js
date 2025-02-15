@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: ['imagedelivery.net', 'customer-m033z5x00ks6nunl.cloudflarestream.com', '3bd3665e92625dc3aaedf9dfdbb291f9.r2.cloudflarestorage.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -21,6 +22,7 @@ const nextConfig = {
         port: '',
       },
     ],
+    unoptimized: true,
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
