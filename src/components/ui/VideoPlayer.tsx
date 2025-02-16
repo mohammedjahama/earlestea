@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 interface VideoPlayerProps {
   src: string
@@ -25,6 +25,23 @@ export const VideoPlayer = ({
 }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (video && autoPlay) {
+      // Try to play when component mounts
+      const playPromise = video.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Auto-play was prevented, try again with muted
+          video.muted = true
+          video.play().catch(() => {
+            console.warn('Video autoplay failed even with muted setting')
+          })
+        })
+      }
+    }
+  }, [autoPlay])
+
   return (
     <video
       ref={videoRef}
@@ -36,6 +53,18 @@ export const VideoPlayer = ({
       playsInline={playsInline}
       autoPlay={autoPlay}
       poster={poster}
+      onCanPlay={(e) => {
+        if (autoPlay) {
+          const video = e.currentTarget
+          video.play().catch(() => {
+            // If autoplay fails, try again with muted
+            video.muted = true
+            video.play().catch(() => {
+              console.warn('Video autoplay failed even with muted setting')
+            })
+          })
+        }
+      }}
     />
   )
 }
