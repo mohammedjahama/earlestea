@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
   images: {
-    unoptimized: true,
+    domains: ['imagedelivery.net', 'customer-m033z5x00ks6nunl.cloudflarestream.com'],
   },
   eslint: {
     ignoreDuringBuilds: true,
