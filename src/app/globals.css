@@ -137,3 +137,14 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Text Shadow */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5),
+               0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow h1 {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8),
+               0 4px 12px rgba(0, 0, 0, 0.6);
+}

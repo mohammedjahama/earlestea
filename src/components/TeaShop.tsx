@@ -21,7 +21,7 @@ const teaProducts: TeaProduct[] = [
     name: "Earle's Signature Blend",
     description: "A harmonious blend of premium black teas with subtle notes of bergamot and jasmine, crafted to inspire creativity and mindfulness.",
     price: 24.99,
-    imageUrl: "/images/afro1.jpeg",
+    imageUrl: "/images/tea1.jpg",
     weight: "100g",
     origin: "Blend of Ceylon and Assam",
     type: "Black Tea Blend"
@@ -31,7 +31,7 @@ const teaProducts: TeaProduct[] = [
     name: "Creative Focus",
     description: "An energizing blend of green tea and herbs designed to enhance mental clarity and creative flow.",
     price: 29.99,
-    imageUrl: "/images/afro2.jpeg",
+    imageUrl: "/images/tea2.jpg",
     weight: "80g",
     origin: "Japanese Sencha base",
     type: "Green Tea Blend"
@@ -41,7 +41,7 @@ const teaProducts: TeaProduct[] = [
     name: "Director's Chai",
     description: "A bold and spicy chai blend that embodies the energy and passion of creative direction.",
     price: 27.99,
-    imageUrl: "/images/afro3.jpeg",
+    imageUrl: "/images/tea3.jpg",
     weight: "100g",
     origin: "Indian Masala Chai",
     type: "Spiced Black Tea"

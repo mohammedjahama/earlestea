@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { VideoPlayer } from '@/components/ui/VideoPlayer'
 
 interface TimeSlot {
   id: string
@@ -57,6 +58,22 @@ export const TeaConsultation = () => {
   return (
     <section className="py-20 px-4 md:px-8 bg-neutral-950">
       <div className="max-w-6xl mx-auto">
+        {/* Earle Talking Video Section */}
+        <div className="mb-16 flex justify-center">
+          <div className="relative aspect-video rounded-lg overflow-hidden w-full max-w-xl">
+            <VideoPlayer
+              src="/videos/earletalking.mp4"
+              className="w-full h-full object-cover"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              playsInline={true}
+              controls={false}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          </div>
+        </div>
+
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
             TEA WITH EARLE

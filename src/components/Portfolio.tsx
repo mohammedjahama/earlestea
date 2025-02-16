@@ -19,37 +19,48 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Alicia Keys - HERE",
-    src: "/images/alicia-keys-here-album-cover-paola-kudacki.jpeg",
-    type: "image",
-    description: "Creative Direction for Album Campaign",
-    category: "Music"
+    title: "UEFA Champions League - Dua Lipa",
+    src: "/videos/dua-lipa-uefa.mp4",
+    type: "video",
+    thumbnail: "/images/Screen+Shot+2024-03-13+at+8.35.30+AM.jpg",
+    description: "Live Performance Direction",
+    category: "Live Events"
   },
   {
     id: 2,
-    title: "Jay Z & Alicia Keys - Empire State of Mind",
-    src: "/videos/empire-state-of-mind.mp4",
+    title: "Alicia Keys - Paris",
+    src: "/videos/alicia-keys-paris.mp4",
     type: "video",
-    thumbnail: "/images/thumbnailearlealicia.jpeg",
+    thumbnail: "/images/alicia-keys-here-album-cover-paola-kudacki.jpeg",
     description: "Live Performance Direction",
     category: "Music"
   },
   {
     id: 3,
-    title: "Afropunk Festival 2015",
-    src: "/videos/afropunk-2015.mp4",
+    title: "Madonna - Performance",
+    src: "/videos/madonna.mp4",
     type: "video",
-    thumbnail: "/images/afropunk2015.jpeg",
-    description: "Festival Creative Direction",
-    category: "Events"
+    thumbnail: "/images/madonna.jpg",
+    description: "Live Performance Direction",
+    category: "Music"
   },
   {
     id: 4,
-    title: "Afropunk Moments I",
-    src: "/images/afro1.jpeg",
-    type: "image",
-    description: "Cultural Documentation",
-    category: "Events"
+    title: "Missy Elliott - Music Video",
+    src: "/videos/missy-elliott.mp4",
+    type: "video",
+    thumbnail: "/images/image-cache.jpeg",
+    description: "Music Video Direction",
+    category: "Music Videos"
+  },
+  {
+    id: 5,
+    title: "Red Hot + Cool",
+    src: "/videos/rhc.mp4",
+    type: "video",
+    thumbnail: "/images/bibleprevie.jpg",
+    description: "Documentary Direction",
+    category: "Documentary"
   }
 ]
 
@@ -135,11 +146,24 @@ export const Portfolio = () => {
             >
               <div className="relative w-full h-full">
                 <div className="relative w-full h-full">
-                  <OptimizedImage
-                    src={projects[currentIndex].type === 'video' ? projects[currentIndex].thumbnail || '' : projects[currentIndex].src}
-                    alt={projects[currentIndex].title}
-                    priority
-                  />
+                  {projects[currentIndex].type === 'video' ? (
+                    <VideoPlayer
+                      src={projects[currentIndex].src}
+                      className="w-full h-full object-cover"
+                      autoPlay={true}
+                      muted={true}
+                      loop={true}
+                      playsInline={true}
+                      controls={false}
+                      poster={projects[currentIndex].thumbnail}
+                    />
+                  ) : (
+                    <OptimizedImage
+                      src={projects[currentIndex].src}
+                      alt={projects[currentIndex].title}
+                      priority
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 z-10">

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { OptimizedImage } from '@/components/ui/OptimizedImage'
+import { VideoPlayer } from '@/components/ui/VideoPlayer'
 
 export default function TeaPhilosophy() {
   return (
@@ -16,10 +16,14 @@ export default function TeaPhilosophy() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-            <OptimizedImage
-              src="/images/afropunk2015.jpeg"
-              alt="Earle Sebastian Tea Ceremony"
-              priority
+            <VideoPlayer
+              src="/videos/afropunk-2015.mp4"
+              className="w-full h-full object-cover"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              playsInline={true}
+              controls={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>

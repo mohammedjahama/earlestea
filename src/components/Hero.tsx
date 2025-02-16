@@ -9,23 +9,23 @@ export const Hero = () => {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <VideoPlayer
-          src="/videos/alicia-keys-paris.mp4"
+          src="/videos/hero.mp4"
           className="object-cover w-full h-full"
           autoPlay
           loop
           muted
           playsInline
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen px-4 md:px-8">
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen px-4 md:px-8 text-shadow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto space-y-8"
+          className="text-center max-w-4xl mx-auto space-y-8 p-8 rounded-lg bg-black/50 backdrop-blur-md border border-white/10"
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif">
             EARLE SEBASTIAN
