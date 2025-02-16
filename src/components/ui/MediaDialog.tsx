@@ -91,6 +91,8 @@ export const MediaDialog = ({
                     className="w-full h-full"
                     controls
                     autoPlay
+                    muted
+                    playsInline
                   />
                 )}
               </div>
