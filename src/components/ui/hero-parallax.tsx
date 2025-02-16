@@ -9,7 +9,6 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { VideoPlayer } from "@/components/ui/VideoPlayer";
 
 export const HeroParallax = ({
   products,
@@ -75,16 +74,15 @@ export const HeroParallax = ({
         transition={{ duration: 1 }}
         className="absolute inset-0 z-0"
       >
-        <VideoPlayer
-          src="/videos/hero.mp4"
+        <video
+          autoPlay
+          muted
+          loop
           className="w-full h-full object-cover"
-          autoPlay={true}
-          playsInline={true}
-          muted={true}
-          loop={true}
-          controls={false}
           poster="/images/hero-fallback.jpg"
-        />
+        >
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+        </video>
       </motion.div>
 
       <motion.div
@@ -167,5 +165,7 @@ export const ProductCard = ({
         {product.title}
       </h2>
     </motion.div>
+  );
+};
   );
 };
