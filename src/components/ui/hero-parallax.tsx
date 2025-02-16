@@ -19,6 +19,15 @@ export const HeroParallax = ({
     thumbnail: string;
   }[];
 }) => {
+  // Auto-playing video background
+  const videoStyle = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: -1
+  } as React.CSSProperties;
+
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
@@ -59,6 +68,23 @@ export const HeroParallax = ({
       ref={ref}
       className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 z-0"
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          className="w-full h-full object-cover"
+          poster="/images/hero-fallback.jpg"
+        >
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+        </video>
+      </motion.div>
+
       <motion.div
         style={{
           rotateX,
