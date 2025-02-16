@@ -8,23 +8,19 @@ import { VideoPlayer } from './VideoPlayer'
 interface MediaDialogProps {
   isOpen: boolean
   onClose: () => void
-  mediaId: string
+  src: string
   mediaType: 'image' | 'video'
   title?: string
   description?: string
-  localImage?: string
-  useLocalVideo?: boolean
 }
 
 export const MediaDialog = ({
   isOpen,
   onClose,
-  mediaId,
+  src,
   mediaType,
   title,
-  description,
-  localImage,
-  useLocalVideo = false
+  description
 }: MediaDialogProps) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -83,7 +79,7 @@ export const MediaDialog = ({
               <div className="relative aspect-video">
                 {mediaType === 'image' ? (
                   <Image
-                    src={localImage || ''}
+                    src={src}
                     alt={title || 'Media preview'}
                     fill
                     className="object-contain"
@@ -91,11 +87,10 @@ export const MediaDialog = ({
                   />
                 ) : (
                   <VideoPlayer
-                    videoId={mediaId}
+                    src={src}
                     className="w-full h-full"
                     controls
                     autoPlay
-                    useLocalVideo={useLocalVideo}
                   />
                 )}
               </div>

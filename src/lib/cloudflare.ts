@@ -1,4 +1,4 @@
-type ImageVariant = 'public' | 'thumbnail' | 'preview' | 'full'
+export type ImageVariant = 'public' | 'thumbnail' | 'preview' | 'full'
 
 const imageVariants: Record<ImageVariant, string> = {
   public: 'public',
@@ -8,16 +8,15 @@ const imageVariants: Record<ImageVariant, string> = {
 }
 
 export const getCloudflareImageUrl = (imageId: string, variant: ImageVariant = 'public') => {
-  // Using direct delivery URL without token
-  return `${process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGES_DELIVERY_URL}/${imageId}/${imageVariants[variant]}`
+  return `https://imagedelivery.net/J5_Cwb5ZWttmHHenUCO3ZA/${imageId}/${imageVariants[variant]}`
 }
 
 export const getCloudflareVideoUrl = (videoId: string) => {
-  return `${process.env.NEXT_PUBLIC_CLOUDFLARE_STREAM_DELIVERY_URL}/${videoId}/manifest/video.m3u8`
+  return `https://customer-m033z5x00ks6nunl.cloudflarestream.com/${videoId}/manifest/video.m3u8`
 }
 
 export const getCloudflareVideoThumbnail = (videoId: string) => {
-  return `${process.env.NEXT_PUBLIC_CLOUDFLARE_STREAM_DELIVERY_URL}/${videoId}/thumbnails/thumbnail.jpg`
+  return `https://customer-m033z5x00ks6nunl.cloudflarestream.com/${videoId}/thumbnails/thumbnail.jpg`
 }
 
 export const getCloudflareR2Url = (path: string) => {

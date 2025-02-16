@@ -40,9 +40,15 @@ next-env.d.ts
 /sanity/dist
 
 # Media files
-*.mp4
-*.jpg
-*.jpeg
-/public/videos/
-/public/audio/
-/public/images/
+/public/videos/*
+/public/audio/*
+
+# Keep specific media files
+!public/images/
+public/images/*
+!public/images/alicia-keys-here-album-cover-paola-kudacki.jpeg
+!public/images/alicia2.jpg
+!public/images/thumbnailearlealicia.jpeg
+!public/images/afropunk2015.jpeg
+!public/images/afro1.jpeg
+!public/images/sebastian-earle.jpg

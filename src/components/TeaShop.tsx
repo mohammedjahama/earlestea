@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { cn } from '@/lib/utils'
 
 interface TeaProduct {
@@ -21,7 +21,7 @@ const teaProducts: TeaProduct[] = [
     name: "Earle's Signature Blend",
     description: "A harmonious blend of premium black teas with subtle notes of bergamot and jasmine, crafted to inspire creativity and mindfulness.",
     price: 24.99,
-    imageUrl: "/images/sebastian-earle.jpg",
+    imageUrl: "/images/afro1.jpeg",
     weight: "100g",
     origin: "Blend of Ceylon and Assam",
     type: "Black Tea Blend"
@@ -31,7 +31,7 @@ const teaProducts: TeaProduct[] = [
     name: "Creative Focus",
     description: "An energizing blend of green tea and herbs designed to enhance mental clarity and creative flow.",
     price: 29.99,
-    imageUrl: "/images/afro1.jpeg",
+    imageUrl: "/images/afro2.jpeg",
     weight: "80g",
     origin: "Japanese Sencha base",
     type: "Green Tea Blend"
@@ -41,7 +41,7 @@ const teaProducts: TeaProduct[] = [
     name: "Director's Chai",
     description: "A bold and spicy chai blend that embodies the energy and passion of creative direction.",
     price: 27.99,
-    imageUrl: "/images/afro2.jpeg",
+    imageUrl: "/images/afro3.jpeg",
     weight: "100g",
     origin: "Indian Masala Chai",
     type: "Spiced Black Tea"
@@ -78,11 +78,10 @@ export const TeaShop = () => {
               onClick={() => setSelectedProduct(product)}
             >
               <div className="aspect-[4/3] relative">
-                <Image
+                <OptimizedImage
                   src={product.imageUrl}
                   alt={product.name}
-                  fill
-                  className="object-cover"
+                  priority={product.id === 'earles-signature-blend'}
                 />
               </div>
               <div className="p-6">
@@ -103,11 +102,9 @@ export const TeaShop = () => {
             <div className="bg-neutral-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="grid md:grid-cols-2 gap-8 p-8">
                 <div className="aspect-square relative rounded-lg overflow-hidden">
-                  <Image
+                  <OptimizedImage
                     src={selectedProduct.imageUrl}
                     alt={selectedProduct.name}
-                    fill
-                    className="object-cover"
                   />
                 </div>
                 <div className="space-y-6">

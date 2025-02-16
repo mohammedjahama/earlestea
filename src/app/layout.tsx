@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { MediaProvider } from '@/contexts/MediaContext'
+import { MediaContextProvider } from '@/contexts/MediaContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MediaProvider>
+        <MediaContextProvider>
           {children}
-        </MediaProvider>
+        </MediaContextProvider>
       </body>
     </html>
   )

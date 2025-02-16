@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
 
 export default function TeaPhilosophy() {
   return (
@@ -16,11 +16,10 @@ export default function TeaPhilosophy() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-            <Image
-              src="/images/sebastian-earle.jpg"
+            <OptimizedImage
+              src="/images/afropunk2015.jpeg"
               alt="Earle Sebastian Tea Ceremony"
-              fill
-              className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>

@@ -3,73 +3,57 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { VideoPlayer } from '@/components/ui/VideoPlayer'
 import { MediaDialog } from '@/components/ui/MediaDialog'
-
 interface Project {
   id: number
   title: string
-  mediaId: string
+  src: string
   type: 'image' | 'video'
   description: string
   category: string
-  thumbnailId?: string
-  localImage?: string
+  thumbnail?: string
 }
 
 const projects: Project[] = [
   {
     id: 1,
     title: "Alicia Keys - HERE",
-    mediaId: "alicia-keys-here-album-cover-paola-kudacki",
+    src: "/images/alicia-keys-here-album-cover-paola-kudacki.jpeg",
     type: "image",
     description: "Creative Direction for Album Campaign",
-    category: "Music",
-    localImage: "/images/alicia-keys-here-album-cover-paola-kudacki.jpeg"
+    category: "Music"
   },
   {
     id: 2,
-    title: "Alicia Keys - Paris Sessions",
-    mediaId: "Alicia Keys in Paris ｜ A Take Away Show",
+    title: "Jay Z & Alicia Keys - Empire State of Mind",
+    src: "/videos/empire-state-of-mind.mp4",
     type: "video",
-    thumbnailId: "alicia2",
-    description: "Intimate Performance Direction",
-    category: "Music",
-    localImage: "/images/alicia2.jpg"
+    thumbnail: "/images/thumbnailearlealicia.jpeg",
+    description: "Live Performance Direction",
+    category: "Music"
   },
   {
     id: 3,
-    title: "Jay Z & Alicia Keys - Empire State of Mind",
-    mediaId: "Jay Z & Alicia Keys - Empire State of Mind LIVE",
+    title: "Afropunk Festival 2015",
+    src: "/videos/afropunk-2015.mp4",
     type: "video",
-    thumbnailId: "thumbnailearlealicia",
-    description: "Live Performance Direction",
-    category: "Music",
-    localImage: "/images/thumbnailearlealicia.jpeg"
+    thumbnail: "/images/afropunk2015.jpeg",
+    description: "Festival Creative Direction",
+    category: "Events"
   },
   {
     id: 4,
-    title: "Afropunk Festival 2015",
-    mediaId: "AFROPUNK FEST BROOKLYN 2015： DAY 2 RECAP",
-    type: "video",
-    thumbnailId: "afropunk2015",
-    description: "Festival Creative Direction",
-    category: "Events",
-    localImage: "/images/afropunk2015.jpeg"
-  },
-  {
-    id: 5,
     title: "Afropunk Moments I",
-    mediaId: "afro1",
+    src: "/images/afro1.jpeg",
     type: "image",
     description: "Cultural Documentation",
-    category: "Events",
-    localImage: "/images/afro1.jpeg"
+    category: "Events"
   }
 ]
 
-export default function Portfolio() {
+export const Portfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -151,14 +135,10 @@ export default function Portfolio() {
             >
               <div className="relative w-full h-full">
                 <div className="relative w-full h-full">
-                  <Image
-                    src={projects[currentIndex].localImage || ''}
+                  <OptimizedImage
+                    src={projects[currentIndex].type === 'video' ? projects[currentIndex].thumbnail || '' : projects[currentIndex].src}
                     alt={projects[currentIndex].title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                    className="object-cover"
                     priority
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
@@ -209,7 +189,7 @@ export default function Portfolio() {
 
           {/* Dots Navigation */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-            {projects.map((_, idx) => (
+            {projects.map((_: Project, idx: number) => (
               <button
                 key={idx}
                 onClick={(e) => {
@@ -230,12 +210,10 @@ export default function Portfolio() {
       <MediaDialog
         isOpen={dialogOpen}
         onClose={() => setDialogOpen(false)}
-        mediaId={projects[currentIndex].mediaId}
+        src={projects[currentIndex].src}
         mediaType={projects[currentIndex].type}
         title={projects[currentIndex].title}
         description={projects[currentIndex].description}
-        localImage={projects[currentIndex].localImage}
-        useLocalVideo={true}
       />
     </>
   )

@@ -1,22 +1,18 @@
-import Navigation from '@/components/Navigation'
-import Hero from '@/components/Hero'
-import Portfolio from '@/components/Portfolio'
+import { Hero } from '@/components/Hero'
+import { Portfolio } from '@/components/Portfolio'
 import TeaPhilosophy from '@/components/TeaPhilosophy'
-import { TeaShop } from '@/components/TeaShop'
 import { TeaConsultation } from '@/components/TeaConsultation'
-import CreativeTimeline from '@/components/CreativeTimeline'
+import { TeaShop } from '@/components/TeaShop'
 import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black">
-      <Navigation />
+    <main>
       <Hero />
       <Portfolio />
-      <CreativeTimeline />
       <TeaPhilosophy />
-      <TeaShop />
       <TeaConsultation />
+      <TeaShop />
       <Footer />
     </main>
   )

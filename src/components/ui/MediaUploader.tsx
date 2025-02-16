@@ -1,73 +1,81 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { useMedia } from '@/contexts/MediaContext'
+import React, { useState } from 'react'
+import { useMediaContext } from '@/contexts/MediaContext'
 
 interface MediaUploaderProps {
-  type: 'image' | 'video'
-  onUploadComplete: (id: string) => void
-  onError: (error: string) => void
-  className?: string
+  file: string
 }
 
-export const MediaUploader = ({
-  type,
-  onUploadComplete,
-  onError,
-  className = ''
-}: MediaUploaderProps) => {
-  const [uploading, setUploading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { uploadMedia } = useMedia()
+export const MediaUploader = ({ file }: MediaUploaderProps) => {
+  const { setSelectedMedia, setIsModalOpen } = useMediaContext()
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [isUploading, setIsUploading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    setUploading(true)
-    setProgress(0)
+  const handleUpload = async () => {
+    setIsUploading(true)
+    setError(null)
 
     try {
-      const id = await uploadMedia(file)
-      onUploadComplete(id)
-    } catch (error) {
-      onError(error instanceof Error ? error.message : 'Upload failed')
-    } finally {
-      setUploading(false)
-      setProgress(0)
+      // Simulate upload progress
+      const interval = setInterval(() => {
+        setUploadProgress(prev => {
+          if (prev >= 90) {
+            clearInterval(interval)
+            return prev
+          }
+          return prev + 10
+        })
+      }, 500)
 
-      // Reset input
-      if (inputRef.current) {
-        inputRef.current.value = ''
-      }
+      // Simulate upload completion
+      setTimeout(() => {
+        clearInterval(interval)
+        setUploadProgress(100)
+        setIsUploading(false)
+        setSelectedMedia(file)
+        setIsModalOpen(true)
+      }, 3000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to upload file')
+      setIsUploading(false)
     }
   }
 
   return (
-    <div className={className}>
-      <input
-        ref={inputRef}
-        type="file"
-        accept={type === 'image' ? 'image/*' : 'video/*'}
-        onChange={handleFileChange}
-        disabled={uploading}
-        className="hidden"
-      />
-      <button
-        onClick={() => inputRef.current?.click()}
-        disabled={uploading}
-        className="px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
-      >
-        {uploading ? (
-          <div className="flex items-center space-x-2">
-            <span>Uploading... {progress}%</span>
-            <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : (
-          `Upload ${type === 'image' ? 'Image' : 'Video'}`
+    <div className="border rounded-lg p-4 bg-white">
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-gray-600">{file}</span>
+        {!isUploading && uploadProgress < 100 && (
+          <button
+            onClick={handleUpload}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Upload
+          </button>
         )}
-      </button>
+      </div>
+
+      {isUploading && (
+        <div className="mt-2">
+          <div className="h-2 bg-gray-200 rounded">
+            <div
+              className="h-full bg-blue-500 rounded transition-all duration-300"
+              style={{ width: `${uploadProgress}%` }}
+            />
+          </div>
+          <span className="text-sm text-gray-500 mt-1">
+            Uploading... {uploadProgress}%
+          </span>
+        </div>
+      )}
+
+      {error && (
+        <div className="mt-2 text-sm text-red-500">
+          Error: {error}
+        </div>
+      )}
     </div>
   )
 }

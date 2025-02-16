@@ -1,12 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { getCloudflareImageUrl } from '@/lib/cloudflare'
 
 interface OptimizedImageProps {
-  imageId: string
+  src: string
   alt: string
-  variant?: 'public' | 'thumbnail' | 'preview' | 'full'
   width?: number
   height?: number
   className?: string
@@ -14,25 +12,21 @@ interface OptimizedImageProps {
 }
 
 export const OptimizedImage = ({
-  imageId,
+  src,
   alt,
-  variant = 'public',
   width,
   height,
   className = '',
   priority = false
 }: OptimizedImageProps) => {
-  const imageUrl = getCloudflareImageUrl(imageId, variant)
-
+  // Use a regular img tag for static exports
   return (
     <div className={`relative w-full h-full ${className}`}>
-      <Image
-        src={imageUrl}
+      <img
+        src={src}
         alt={alt}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover"
-        priority={priority}
+        className={`object-cover w-full h-full ${className}`}
+        loading={priority ? "eager" : "lazy"}
       />
     </div>
   )

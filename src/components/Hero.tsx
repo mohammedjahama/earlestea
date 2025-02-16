@@ -1,22 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { VideoPlayer } from '@/components/ui/VideoPlayer'
 
-export default function Hero() {
+export const Hero = () => {
   return (
     <section className="relative min-h-screen bg-black text-white">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
+        <VideoPlayer
+          src="/videos/alicia-keys-paris.mp4"
+          className="object-cover w-full h-full"
           autoPlay
           loop
           muted
           playsInline
-          className="object-cover w-full h-full"
-        >
-          <source src="/videos/clipofearletalkingprocess.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
