@@ -81,7 +81,7 @@ export const HeroParallax = ({
           className="w-full h-full object-cover"
           poster="/images/hero-fallback.jpg"
         >
-          <source src="/videos/hero-background.mp4" type="video/mp4" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
